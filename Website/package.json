@@ -1,0 +1,15 @@
+{
+  "name": "python-iot",
+  "version": "1.0.0",
+  "description": "Yikers",
+  "main": "run.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lightstal/Project-Work/tree/main/Python%20IOT"
+  },
+  "author": "Bryan Kor",
+  "license": "ISC"
+}
