@@ -4,11 +4,13 @@ from blog.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from blog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 import matplotlib.pyplot as plt
+import os
 
 import requests
 import json
 import re
 
+abs_path = os.path.dirname(os.path.abspath(__file__))
 
 def formatDateTime(dateTime):
     a = re.sub(r'[A-Z]', ' ', dateTime).rstrip().split()
@@ -58,7 +60,7 @@ posts = [
     {
         'author': 'Bryan Kor',
         'title': 'Blog Post 1',
-        'content': 'First post content',
+        'content': 'This safe really has exceeded my expectations for a safe. I am so happy I found it. Comes with not just web monitoring but also social media!',
         'date_posted': '7th December, 2021'
     },
     {
@@ -133,10 +135,15 @@ def logout():
 
 
 @app.route('/graph')
+def graph():
+    plotting()
+    return render_template('graph.html', title='Graph', url='static/images/graph.png')
+
 def plotting():
     temp_list, humidity_list, timings_list, raw_data_list = get_data(
         "https://api.thingspeak.com/channels/1585193/feeds.json?results=2000000")
     fig, ax1 = plt.subplots()
+    plt.ioff()
     color = 'tab:red'
     ax1.set_xlabel('Time')
     ax1.set_ylabel('Temperature', color=color)
@@ -151,8 +158,10 @@ def plotting():
     fig.autofmt_xdate(rotation=90, ha="right")
     fig.subplots_adjust(hspace=0.5, bottom=0.3)
     fig.suptitle('Temperature and Humidity')
-    plt.grid(True)
     plt.show()
+    fig.savefig(abs_path + '\\static\\images\\graph.png')
+    plt.show()
+
 
 
 @app.route('/data')

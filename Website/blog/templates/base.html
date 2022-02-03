@@ -29,7 +29,7 @@
               <a class="nav-item nav-link" href="{{ url_for('index') }}">Home</a>
               <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
                 {% if current_user.is_authenticated %}
-                    <a class="nav-item nav-link" href="{{ url_for('plotting') }}">Show Graph</a>
+                    <a class="nav-item nav-link" href="{{ url_for('graph') }}">Show Graph</a>
                     <a class="nav-item nav-link" href="{{ url_for('data') }}">Show logs</a>
 
                 {% endif %}
